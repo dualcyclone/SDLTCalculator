@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--
+    * Copyright (c) 2014-2015 Flying Anvil Ltd (copyright@flyinganvil.co.uk)
+    * Any use of the code written here-in belongs to the company mentioned
+    * above and is hereby the owner. If used, one must have strict
+    * approval by the developer of the code written here-in.
+    * The company may at anytime change, modify, add, or delete
+    * any content contained within.
+    -->
+    <meta charset="UTF-8">
+    <title>SDLT & LBTT Calculator for the UK and Scotland</title>
+
+    <meta name="title" content="Stamp Duty Land Tax and Land and Buildings Transaction Tax Calculator for the United Kingdom and Scotland."/>
+    <meta name="Description" content="A simple Stamp Duty Land Tax and Land and Buildings Transaction Tax calculator that will identify the amount of tax due to be paid under the old and new legislation."/>
+    <meta name="keywords" content="UK, Scotland, United Kingdom, Tax, Stamp Duty, Stamp Duty Land Tax, new stamp duty rates, new land and buildings transaction tax rates, SDLT, LBTT, Land and Building Transaction Tax, Property, House Buying, Mortgage, finance, affordability"/>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css?_=1">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <section id="sdlt">
+        <h1>Stamp Duty Tax Calculator</h1>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-57608606-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+        <menu id="sdltMenu" style="display:none;">
+            <ul>
+                <li><a id="sdltAbout-link" href="#sdltAbout-link" data-bind="click: showPage.bind($root)" class="active">Home</a></li>
+                <li><a id="sdltCalcCont-link" href="#sdltCalcCont-link" data-bind="click: showPage.bind($root)">Calculate Stamp Duty</a></li>
+                <li><a id="sdltRateTables-link" href="#sdltRateTables-link" data-bind="click: showPage.bind($root)">View current SDLT / LBTT Rates</a></li>
+            </ul>
+        </menu>
+
+        <p>
+            Work out your Stamp Duty liability for your expected house purchase price for the United Kingdom and Scotland.
+            <a id="fomLink" href="#sdltCalcCont-link" data-bind="click: showPage.bind($root)" style="display:none;">Find out more here.</a>
+        </p>
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Stamp Duty Calc - 600 x 90 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:600px;height:90px"
+             data-ad-client="ca-pub-8107914591285190"
+             data-ad-slot="5887369445"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <section id="sdltAbout">
+            <h1>About Stamp Duty in the UK and Scotland</h1>
+            <p>
+                From the 4th December 2014 in the UK, the stamp duty rates have changed. However from 1st April 2015, legislation
+                is due to be passed in Scotland which dissolves Stamp Duty Land Tax (SDLT) in favour of the new Land and Buildings Transation
+                Tax (LBTT).
+            </p>
+            <p>
+                This site has been produced to help you work out what rates you are likely to pay for your intended purchase
+                price.
+            </p>
+            <p>
+                Please be aware, only purchases that have exchanged prior to 4th December 2014 can decide which SDLT rates
+                can be applied to their purchase. From 1st April 2015 in Scotland only, the new Land and Building Transaction
+                Tax will be the only tax that applies, and will replace the SDLT that applies in the rest of the UK.
+            </p>
+            <p>More information about the SDLT rates within the United Kingdom can be found on the below links:</p>
+            <ul>
+                <li><a target="_blank" href="https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/rates-and-allowances-stamp-duty-land-tax">https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/rates-and-allowances-stamp-duty-land-tax</a><span class="newwin" title="opens in new window"/></li>
+                <li><a target="_blank" href="https://www.gov.uk/stamp-duty-land-tax-rates">https://www.gov.uk/stamp-duty-land-tax-rates</a><span class="newwin" title="opens in new window"/></li>
+                <!--li><a target="_blank" href="http://www.hmrc.gov.uk/sd/land/landtransfers-rates.htm" target="_blank">http://www.hmrc.gov.uk/sd/land/landtransfers-rates.htm</a><span class="newwin" title="opens in new window"/></li-->
+                <li><a target="_blank" href="https://www.gov.uk/stamp-duty-land-tax-rates" target="_blank">https://www.gov.uk/stamp-duty-land-tax-rates</a><span class="newwin" title="opens in new window"/></li>
+                <li><a target="_blank" href="https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands">https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands</a><span class="newwin" title="opens in new window"/></li>
+                <li><a target="_blank" href="http://www.legislation.gov.uk/asp/2013/11/contents/enacted" target="_blank">http://www.legislation.gov.uk/asp/2013/11/contents/enacted</a><span class="newwin" title="opens in new window"/></li>
+                <li><a target="_blank" href="http://www.scotland.gov.uk/Topics/Government/Finance/scottishapproach/lbtt" target="_blank">http://www.scotland.gov.uk/Topics/Government/Finance/scottishapproach/lbtt</a><span class="newwin" title="opens in new window"/></li>
+                <li><a target="_blank" href="http://www.scottish.parliament.uk/parliamentarybusiness/Bills/56718.aspx" target="_blank">http://www.scottish.parliament.uk/parliamentarybusiness/Bills/56718.aspx</a><span class="newwin" title="opens in new window"/></li>
+                <li><a target="_blank" href="http://en.wikipedia.org/wiki/Stamp_duty_in_the_United_Kingdom">http://en.wikipedia.org/wiki/Stamp_duty_in_the_United_Kingdom</a><span class="newwin" title="opens in new window"/></li>
+                <li><a target="_blank" href="http://en.wikipedia.org/wiki/Land_and_Buildings_Transaction_Tax_(Scotland)_Act_2013">http://en.wikipedia.org/wiki/Land_and_Buildings_Transaction_Tax_(Scotland)_Act_2013</a><span class="newwin" title="opens in new window"/></li>
+                <li><a target="_blank" href="http://www.telegraph.co.uk/finance/newsbysector/constructionandproperty/11146956/Scots-middle-class-to-be-hit-hard-by-new-homeowner-tax.html" target="_blank">http://www.telegraph.co.uk/finance/newsbysector/constructionandproperty/11146956/Scots-middle-class-to-be-hit-hard-by-new-homeowner-tax.html</a><span class="newwin" title="opens in new window"/></li>
+            </ul>
+        </section>
+        <section id="sdltRateTables">
+            <h1>What are the Stamp Duty rates in the UK and Scotland</h1>
+            <p>The Stamp Duty Land Tax rates within the United Kingdom, and the Scottish Land and Building Transaction Tax rates are as follows:</p>
+            <div class="columns rates">
+                <section>
+                    <h1>Old UK SDLT rates</h1>
+                    <p>
+                        This is the old cliff-edge system; the price you pay dictates the rate you pay on the complete
+                        purchase price.
+                    </p>
+                    <p>
+                        This policy is no longer active as of 4th December 2014, but can still be used for purchases where
+                        contracts were exchanged prior to this date.
+                    </p>
+                    <table>
+                        <tr>
+                            <th>Price paid</th>
+                            <th>Percentage tax</th>
+                        </tr>
+                        <tr>
+                            <td>Under £125,000</td>
+                            <td>Zero</td>
+                        </tr>
+                        <tr>
+                            <td>Over £125,000<br/>Under £250,000</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Over £250,000<br/>Under £500,000</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Over £500,000<br/>Under £1,000,000</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Over £1,000,000<br/>Under £2,000,000</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Over £2,000,000</td>
+                            <td>7</td>
+                        </tr>
+                    </table>
+                    <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/rates-and-allowances-stamp-duty-land-tax">Source</a>)</p>
+                </section>
+                <section>
+                    <h1>New UK SDLT rates</h1>
+                    <p>
+                        The new scaled-rate system; The duty is calculated at each band up to the value of the purchase
+                        price.
+                    </p>
+                    <p>
+                        This policy is active as of 4th December 2014. Where purchases have exchanged contracts prior to this
+                        date, purchasers have the option to choose which SDLT rate they wish to use.
+                    </p>
+                    <table>
+                        <tr>
+                            <th>Price paid</th>
+                            <th>Percentage tax</th>
+                        </tr>
+                        <tr>
+                            <td>Under £125,000</td>
+                            <td>Zero</td>
+                        </tr>
+                        <tr>
+                            <td>Over £125,000<br/>Under £250,000</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Over £250,000<br/>Under £925,000</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Over £925,000<br/>Under £1,500,000</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Over £1,500,000</td>
+                            <td>12</td>
+                        </tr>
+                    </table>
+                    <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/stamp-duty-land-tax-rates">Source</a>)</p>
+                </section>
+                <section>
+                    <h1>Scottish LBTT rates</h1>
+                    <p>
+                        The new scaled-rate system; The duty is calculated at each band up to the value of the purchase
+                        price.
+                    </p>
+                    <p>
+                        This policy will become active in Scotland only from the 1st April 2015. Until then, the above
+                        SDLT rates will apply for properties depending on their exchange date.
+                    </p>
+                    <table>
+                        <tr>
+                            <th>Price paid</th>
+                            <th>Percentage tax</th>
+                        </tr>
+                        <tr>
+                            <td>Under £135,000</td>
+                            <td>Zero</td>
+                        </tr>
+                        <tr>
+                            <td>Over £135,000<br/>Under £250,000</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Over £250,000<br/>Under £1,000,000</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Over £1,000,000</td>
+                            <td>12</td>
+                        </tr>
+                    </table>
+                    <p class="source newwin">(<a target="_blank" href="https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands">Source</a>)</p>
+                </section>
+            </div>
+        </section>
+        <section id="sdltCalcCont">
+            <h1>Calculate your Stamp Duty Liability</h1>
+            <p>
+                If you would like to know how much you're likely to pay on the purchase price of a house in the UK, please
+                use the calculator below.
+            </p>
+            <p>
+                The calculator will use the price you entered to inform you of the rates you would have paid prior to 3rd
+                December 2014 throughout the UK, along with the new rates applied after this date, and the rates applied in
+                Scotland from 1st April 2015.
+            </p>
+            <section id="sdltCalc">
+                <h1>Enter your purchase price</h1>
+                <form data-bind="submit: handleSubmit">
+                    <div class="inputContainer">
+                        <span class="currencySymbol">£</span>
+                        <input id="purchasePrice" type="text" maxlength="10" pattern="([0-9]*)" data-bind="value: sdltValue, valueUpdate:'afterkeydown'">
+                    </div>
+                </form>
+            </section>
+
+            <div id="sdltTaxData" data-bind="with: sdltTax">
+                <section data-bind="with: residential">
+                    <h1>Residential SLDT rates</h1>
+                    <section class="tax">
+                        <h1>SDLT (Old)</h1>
+                        <p data-bind="text: $root.formatValue(SDLTOld)"></p>
+                        <span/>
+                    </section>
+                    <section class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, SDLTNew)">
+                        <h1>SDLT (New)</h1>
+                        <p data-bind="text: $root.formatValue(SDLTNew, $data)"></p>
+                        <p data-bind="text: $root.formatDifference(SDLTNew, $data)"></p>
+                    </section>
+                    <section class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, LBTT)">
+                        <h1>LBTT (Scotland)</h1>
+                        <p data-bind="text: $root.formatValue(LBTT, $data)"></p>
+                        <p data-bind="text: $root.formatDifference(LBTT, $data)"></p>
+                    </section>
+                </section>
+
+                <section data-bind="with: commercial">
+                    <h1>Commercial SLDT rates</h1>
+                    <section class="tax">
+                        <h1>SDLT (Old)</h1>
+                        <p data-bind="text: $root.formatValue(SDLTOld)"></p>
+                        <span/>
+                    </section>
+                    <section class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, SDLTNew)">
+                        <h1>SDLT (New)</h1>
+                        <p data-bind="text: $root.formatValue(SDLTNew, $data)"></p>
+                        <p data-bind="text: $root.formatDifference(SDLTNew, $data)"></p>
+                    </section>
+                    <section class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, LBTT)">
+                        <h1>LBTT (Scotland)</h1>
+                        <p data-bind="text: $root.formatValue(LBTT, $data)"></p>
+                        <p data-bind="text: $root.formatDifference(LBTT, $data)"></p>
+                    </section>
+                </section>
+            </div>
+        </section>
+
+        <footer>
+            <ul>
+                <li>Copyright &copy; 2014-2015 Flying Anvil Ltd.</li>
+                <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            </ul>
+        </footer>
+    </section>
+
+    <!-- Include libs last -->
+    <!--<script src="js/SDLTCalc.web.js"></script>-->
+    <script src="js/SDLTCalc.web.js"></script>
+    <script src="js/sdltViewModel.js?_=1"></script>
+</body>
+</html>

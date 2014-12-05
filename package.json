@@ -1,0 +1,24 @@
+{
+  "name": "SDLTCalculator",
+  "description": "A Stamp Duty Land Tax and Land and Building Transaction Tax calculator for the UK.",
+  "author": {
+    "name": "Luke Dyson",
+    "email": "git@flyinganvil.co.uk",
+    "url": "http://www.flyinganvil.co.uk/"
+  },
+  "copyright"  : "Copyright (c) 2014-2015 Flying Anvil Ltd. All rights reserved.",
+  "devDependencies": {
+    "browserify": "^7.0.0",
+    "http-server": "^0.7.4"
+  },
+  "dependencies": {
+    "knockout": "^3.2.0",
+    "underscore": "^1.7.0"
+  },
+  "browser": {
+    "SDLTCalc": "./lib/SDLTCalc.js"
+  },
+  "scripts": {
+    "build-web": "browserify -r knockout -r underscore -r 'lib/SDLTCalc.js:SDLTCalc' > www/js/SDLTCalc.web.js"
+  }
+}

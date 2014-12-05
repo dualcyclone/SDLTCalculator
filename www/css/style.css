@@ -1,0 +1,167 @@
+body {
+    font-family: arial;
+}
+p, li, a {
+    font-size: 12px;
+}
+li {
+    text-align: left;
+}
+
+.newwin {
+    padding-right: 10px;
+    background: url('../i/newwin.png') no-repeat right center;
+}
+
+.columns section {
+    display: inline-block;
+    width: 187px;
+    height: 320px;
+    vertical-align: top;
+}
+
+.rates section {
+    border: 1px solid #5CADFF;
+    border-radius: 4px;
+    padding: 4px;
+    position: relative;
+}
+.rates h1 {
+    font-size: 14px;
+    margin-top: 0;
+}
+.rates p {
+    font-size: 11px;
+}
+.rates p.source {
+    position: absolute;
+    bottom: 0;
+    right: 4px;
+}
+.rates p.source, .rates p.source a {
+    font-size: 8px;
+    font-style: italic;
+}
+.rates table {
+    border-collapse: collapse;
+}
+.rates tr:nth-child(2n) {
+    background: #E6E6E6;
+}
+.rates th {
+    font-size: 12px;
+    padding:2px;
+    margin:0;
+}
+.rates td {
+    font-size: 11px;
+    padding:2px;
+    margin:0;
+}
+
+#sdlt, #sdltPrivacy {
+    width: 600px;
+    margin: 0 auto;
+}
+
+#sdlt {
+    text-align: center;
+}
+
+#sdltCalc {
+    margin-bottom:10px;
+    text-align: center;
+}
+
+#sdltCalc form {
+    position: relative;
+    width: 350px;
+    margin: 0 auto;
+}
+#sdltCalc form .inputContainer {
+    font-size: 18px;
+}
+#sdltCalc form .inputContainer input {
+    border: 1px solid #5CADFF;
+    border-radius: 4px;
+    padding: 10px 10px 10px 30px;
+    font-size: 18px;
+    width: 308px;
+}
+#sdltCalc form .inputContainer .currencySymbol {
+    position: absolute;
+    top: 11px;
+    left: 10px;
+}
+
+
+#sdltTaxData {
+    width: 408px;
+    margin: 0 auto;
+}
+#sdltTaxData section {}
+#sdltTaxData section:last-child {
+    margin-right: 0;
+}
+#sdltTaxData section h1 {
+    padding: 0;
+}
+
+#sdltTaxData .tax {}
+#sdltTaxData .tax * {
+    display: inline-block;
+    width: 110px;
+    text-align: left;
+    margin: 0 0 10px 15px;
+    padding: 4px;
+    border-radius: 4px;
+}
+#sdltTaxData .tax *:first-child {
+    margin: 0 15px 10px 0;
+    text-align: right;
+    background: #E6E6E6;
+}
+#sdltTaxData .tax p {}
+#sdltTaxData .tax.more p:first-of-type {
+    background: #CC0000;
+    color: #fff;
+}
+#sdltTaxData .tax.less p:first-of-type {
+    background: #51B451;
+    color: #fff;
+}
+#sdltTaxData .tax.same p:first-of-type {
+    background: #D6D633;
+}
+
+footer {
+    width: 590px;
+    background: #E6E6E6;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 4px;
+}
+#sdltMenu ul, footer ul {
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+}
+
+#sdltMenu ul li, footer ul li {
+    display: inline;
+}
+
+#sdltMenu ul li a {
+    background: #5CADFF;
+    color: #fff;
+    text-decoration: none;
+    padding: 4px;
+    border-radius: 4px;
+}
+#sdltMenu ul li a:hover {
+    text-decoration: underline;
+}
+
+#sdltMenu ul li a:target {
+    background: #4079B2;
+}
