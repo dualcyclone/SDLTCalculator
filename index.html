@@ -24,6 +24,16 @@
 <section id="sdlt">
     <h1>Stamp Duty Tax Calculator</h1>
 
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-57608606-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
     <menu id="sdltMenu" style="display:none;">
         <ul>
             <li><a id="sdltAbout-link" href="#sdltAbout-link" data-bind="click: showPage.bind($root)" class="active">Home</a></li>
@@ -34,10 +44,21 @@
 
     <p>
         Work out your Stamp Duty liability for your expected house purchase price for the United Kingdom and Scotland.
-        <a href="#calc" data-bind="click: showPage.bind($root, 'sdltCalcCont')">Find out more here.</a>
+        <a id="fomLink" href="#sdltCalcCont-link" data-bind="click: showPage.bind($root)" style="display:none;">Find out more here.</a>
     </p>
 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Stamp Duty Calc - 600 x 90 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:600px;height:90px"
+         data-ad-client="ca-pub-8107914591285190"
+         data-ad-slot="5887369445"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
     <section id="sdltAbout">
+        <h1>About Stamp Duty in the UK and Scotland</h1>
         <p>
             From the 4th December 2014 in the UK, the stamp duty rates have changed. However from 1st April 2015, legislation
             is due to be passed in Scotland which dissolves Stamp Duty Land Tax (SDLT) in favour of the new Land and Buildings Transation
@@ -54,16 +75,22 @@
         </p>
         <p>More information about the SDLT rates within the United Kingdom can be found on the below links:</p>
         <ul>
-            <li><a href="http://www.hmrc.gov.uk/sd/land/landtransfers-rates.htm" target="_blank">http://www.hmrc.gov.uk/sd/land/landtransfers-rates.htm</a></li>
-            <li><a href="https://www.gov.uk/stamp-duty-land-tax-rates" target="_blank">https://www.gov.uk/stamp-duty-land-tax-rates</a></li>
-            <li><a href="http://www.legislation.gov.uk/asp/2013/11/contents/enacted" target="_blank">http://www.legislation.gov.uk/asp/2013/11/contents/enacted</a></li>
-            <li><a href="http://www.scotland.gov.uk/Topics/Government/Finance/scottishapproach/lbtt" target="_blank">http://www.scotland.gov.uk/Topics/Government/Finance/scottishapproach/lbtt</a></li>
-            <li><a href="http://www.scottish.parliament.uk/parliamentarybusiness/Bills/56718.aspx" target="_blank">http://www.scottish.parliament.uk/parliamentarybusiness/Bills/56718.aspx</a></li>
-            <li><a href="http://www.telegraph.co.uk/finance/newsbysector/constructionandproperty/11146956/Scots-middle-class-to-be-hit-hard-by-new-homeowner-tax.html" target="_blank">http://www.telegraph.co.uk/finance/newsbysector/constructionandproperty/11146956/Scots-middle-class-to-be-hit-hard-by-new-homeowner-tax.html</a></li>
+            <li><a target="_blank" href="https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/rates-and-allowances-stamp-duty-land-tax">https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/rates-and-allowances-stamp-duty-land-tax</a><span class="newwin" title="opens in new window"/></li>
+            <li><a target="_blank" href="https://www.gov.uk/stamp-duty-land-tax-rates">https://www.gov.uk/stamp-duty-land-tax-rates</a><span class="newwin" title="opens in new window"/></li>
+            <!--li><a target="_blank" href="http://www.hmrc.gov.uk/sd/land/landtransfers-rates.htm" target="_blank">http://www.hmrc.gov.uk/sd/land/landtransfers-rates.htm</a><span class="newwin" title="opens in new window"/></li-->
+            <li><a target="_blank" href="https://www.gov.uk/stamp-duty-land-tax-rates" target="_blank">https://www.gov.uk/stamp-duty-land-tax-rates</a><span class="newwin" title="opens in new window"/></li>
+            <li><a target="_blank" href="https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands">https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands</a><span class="newwin" title="opens in new window"/></li>
+            <li><a target="_blank" href="http://www.legislation.gov.uk/asp/2013/11/contents/enacted" target="_blank">http://www.legislation.gov.uk/asp/2013/11/contents/enacted</a><span class="newwin" title="opens in new window"/></li>
+            <li><a target="_blank" href="http://www.scotland.gov.uk/Topics/Government/Finance/scottishapproach/lbtt" target="_blank">http://www.scotland.gov.uk/Topics/Government/Finance/scottishapproach/lbtt</a><span class="newwin" title="opens in new window"/></li>
+            <li><a target="_blank" href="http://www.scottish.parliament.uk/parliamentarybusiness/Bills/56718.aspx" target="_blank">http://www.scottish.parliament.uk/parliamentarybusiness/Bills/56718.aspx</a><span class="newwin" title="opens in new window"/></li>
+            <li><a target="_blank" href="http://en.wikipedia.org/wiki/Stamp_duty_in_the_United_Kingdom">http://en.wikipedia.org/wiki/Stamp_duty_in_the_United_Kingdom</a><span class="newwin" title="opens in new window"/></li>
+            <li><a target="_blank" href="http://en.wikipedia.org/wiki/Land_and_Buildings_Transaction_Tax_(Scotland)_Act_2013">http://en.wikipedia.org/wiki/Land_and_Buildings_Transaction_Tax_(Scotland)_Act_2013</a><span class="newwin" title="opens in new window"/></li>
+            <li><a target="_blank" href="http://www.telegraph.co.uk/finance/newsbysector/constructionandproperty/11146956/Scots-middle-class-to-be-hit-hard-by-new-homeowner-tax.html" target="_blank">http://www.telegraph.co.uk/finance/newsbysector/constructionandproperty/11146956/Scots-middle-class-to-be-hit-hard-by-new-homeowner-tax.html</a><span class="newwin" title="opens in new window"/></li>
         </ul>
     </section>
     <section id="sdltRateTables">
-        <p>The SDLT within the United Kingdom, and the Scottish LBTT rates are as follows:</p>
+        <h1>What are the Stamp Duty rates in the UK and Scotland</h1>
+        <p>The Stamp Duty Land Tax rates within the United Kingdom, and the Scottish Land and Building Transaction Tax rates are as follows:</p>
         <div class="columns rates">
             <section>
                 <h1>Old UK SDLT rates</h1>
@@ -105,6 +132,7 @@
                         <td>7</td>
                     </tr>
                 </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/rates-and-allowances-stamp-duty-land-tax">Source</a>)</p>
             </section>
             <section>
                 <h1>New UK SDLT rates</h1>
@@ -142,6 +170,7 @@
                         <td>12</td>
                     </tr>
                 </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/stamp-duty-land-tax-rates">Source</a>)</p>
             </section>
             <section>
                 <h1>Scottish LBTT rates</h1>
@@ -175,11 +204,12 @@
                         <td>12</td>
                     </tr>
                 </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands">Source</a>)</p>
             </section>
         </div>
     </section>
-
     <section id="sdltCalcCont">
+        <h1>Calculate your Stamp Duty Liability</h1>
         <p>
             If you would like to know how much you're likely to pay on the purchase price of a house in the UK, please
             use the calculator below.
@@ -250,6 +280,7 @@
 
 <!-- Include libs last -->
 <!--<script src="js/SDLTCalc.web.js"></script>-->
+<script src="js/polyfill.js"></script>
 <script src="js/SDLTCalc.web.js"></script>
 <script src="js/sdltViewModel.js?_=1"></script>
 </body>

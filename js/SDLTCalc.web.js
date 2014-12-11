@@ -56,10 +56,7 @@ SDLTCalc.prototype.calculate = function(amount) {
 	
 	self.calculateSDLTOld(amount);	
 	self.calculateSDLTNew(amount);
-	self.calculateLBTT(amount);	
-	
-	// todo: change this to something more useful for node purposes?
-	console.log(self.calculatedTax);
+	self.calculateLBTT(amount);
 
 	return self.calculatedTax;
 };

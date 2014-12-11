@@ -7,10 +7,15 @@ p, li, a {
 li {
     text-align: left;
 }
+.newwin {
+    padding-right: 10px;
+    background: url('../i/newwin.png') no-repeat right center;
+}
+
 .columns section {
     display: inline-block;
     width: 187px;
-    height: 310px;
+    height: 320px;
     vertical-align: top;
 }
 
@@ -18,6 +23,7 @@ li {
     border: 1px solid #5CADFF;
     border-radius: 4px;
     padding: 4px;
+    position: relative;
 }
 .rates h1 {
     font-size: 14px;
@@ -25,6 +31,15 @@ li {
 }
 .rates p {
     font-size: 11px;
+}
+.rates p.source {
+    position: absolute;
+    bottom: 0;
+    right: 4px;
+}
+.rates p.source, .rates p.source a {
+    font-size: 8px;
+    font-style: italic;
 }
 .rates table {
     border-collapse: collapse;

@@ -68,6 +68,9 @@ sdltViewModel.prototype.showPage = function(root, evt) {
 
     self.activatePage(page);
 
+    // report page view
+    ga('send', 'pageview');
+
     // DON'T SCROLL!
     setTimeout(function(){
         window.scroll(0,0);
@@ -77,7 +80,6 @@ sdltViewModel.prototype.showPage = function(root, evt) {
 };
 
 sdltViewModel.prototype.activatePage = function(page) {
-    console.log(page)
     for (var i in sdltEl) {
         if (sdltEl.hasOwnProperty(i)) {
             sdltEl[i].style.display = (page === i) ? 'block' : 'none';
@@ -107,7 +109,8 @@ sdltEl.sdltAbout.style.display = 'none';
 sdltViewModel.prototype.activatePage(activePage === '' ? 'sdltAbout' : activePage);
 
 // JavaScript is working, so display the menu
-document.getElementById('sdltMenu').style.display = 'block';
+document.getElementById('sdltMenu').style.display = '';
+document.getElementById('fomLink').style.display = '';
 
 // Activates knockout.js
 window.ko.applyBindings(new sdltViewModel());
