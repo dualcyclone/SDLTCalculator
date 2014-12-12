@@ -68,6 +68,9 @@ sdltViewModel.prototype.showPage = function(root, evt) {
 
     self.activatePage(page);
 
+    // Report page view
+    ga('send', 'pageview');
+    
     // DON'T SCROLL!
     setTimeout(function(){
         window.scroll(0,0);
