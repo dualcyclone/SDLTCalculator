@@ -77,7 +77,6 @@ sdltViewModel.prototype.showPage = function(root, evt) {
 };
 
 sdltViewModel.prototype.activatePage = function(page) {
-    console.log(page)
     for (var i in sdltEl) {
         if (sdltEl.hasOwnProperty(i)) {
             sdltEl[i].style.display = (page === i) ? 'block' : 'none';
@@ -111,4 +110,4 @@ document.getElementById('sdltMenu').style.display = '';
 document.getElementById('fomLink').style.display = '';
 
 // Activates knockout.js
-window.ko.applyBindings(new sdltViewModel());
+ko.applyBindings(new sdltViewModel());
