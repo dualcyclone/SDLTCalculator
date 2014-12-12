@@ -68,6 +68,9 @@ sdltViewModel.prototype.showPage = function(root, evt) {
 
     self.activatePage(page);
 
+    // Report page view
+    ga('send', 'pageview');
+
     // report page view
     ga('send', 'pageview');
 
