@@ -25,13 +25,18 @@ var ko = require('knockout'),
 */
 var sdltViewModel = function() {
     var self = this,
-        sdltCalc = new SDLTCalc();
+        sdltCalc = new SDLTCalc(),
+        priceHitTimeout = 0;
 
     self.sdltValue = window.ko.observable(0);
 
     self.sdltTax = ko.observable(sdltCalc.calculatedTax);
 
     self.sdltValue.subscribe(function(newValue) {
+        clearTimeout(priceHitTimeout);
+        priceHitTimeout = setTimeout(function() {
+            ga('set', 'metric1', newValue);
+        }, 1000);
         self.sdltTax(sdltCalc.calculate(newValue));
     });
 
