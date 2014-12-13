@@ -30,7 +30,7 @@ var sdltViewModel = function() {
 
     self.sdltValue = window.ko.observable(0);
 
-    self.sdltTax = ko.observable(sdltCalc.calculatedTax);
+    self.sdltTax = ko.observable(sdltCalc.calculatedTax.purchase);
 
     self.sdltValue.subscribe(function(newValue) {
         clearTimeout(priceHitTimeout);
