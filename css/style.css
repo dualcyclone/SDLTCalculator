@@ -120,6 +120,13 @@ li {
     text-align: right;
     background: #E6E6E6;
 }
+#sdltTaxData .tax *:nth-child(2n) {
+    text-align: center;
+}
+#sdltTaxData .tax *:last-child {
+    text-align: right;
+}
+
 #sdltTaxData .tax th {
     font-size: 13px;
 }
@@ -153,7 +160,7 @@ footer {
 }
 
 #sdltMenu ul li, footer ul li {
-    display: inline;
+    display: inline-block;
 }
 
 #sdltMenu ul li a {
