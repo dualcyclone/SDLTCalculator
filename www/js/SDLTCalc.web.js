@@ -1,4 +1,121 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"SDLTCalc":[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+module.exports = {
+	purchase: {
+		residential: {
+			// Cliff edge system: use rate for complete amount
+			SDLTOld: {
+				0: [0, 125000],
+				1: [125000, 250000],
+				3: [250000, 500000],
+				4: [500000, 1000000],
+				5: [1000000, 2000000],
+				7: [2000000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together
+			SDLTNew: {
+				0: [0, 125000],
+				2: [125000, 250000],
+				5: [250000, 925000],
+				10: [925000, 1500000],
+				12: [1500000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together
+			LBTT: {
+				0: [0, 135000],
+				2: [135000, 250000],
+				10: [250000, 1000000],
+				12: [1000000, (0/0)] // upper rate is infinite
+			}
+		},
+		commercial: {
+			// Cliff edge system: use rate for complete amount
+			SDLTOld: {
+				0: [0, 150000],
+				1: [150000, 250000],
+				3: [250000, 500000],
+				4: [500000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together
+			SDLTNew: {
+				0: [0, 150000],
+				3: [150000, 500000],
+				4: [500000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together
+			LBTT: {
+				0: [0, 150000],
+				3: [150000, 350000],
+				4.5: [350000, (0/0)] // upper rate is infinite
+			}
+		}
+	},
+	lease: {
+		residential: {
+			// Cliff edge system: use rate for complete amount - low rent
+			SDLTOldLow: {
+				0: [0, 125000],
+				1: [125000, 250000],
+				3: [250000, 500000],
+				4: [500000, 1000000],
+				5: [1000000, 2000000],
+				7: [2000000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together - high rent
+			SDLTOldHigh: {
+				0: [0, 125000],
+				1: [125000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together
+			SDLTNew: {
+				0: [0, 125000],
+				1: [125000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together
+			LBTT: {
+				0: [0, 150000],
+				1: [150000, (0/0)] // upper rate is infinite
+			}
+		},
+		commercial: {
+			// Cliff edge system: use rate for complete amount
+			SDLTOld: {
+				0: [0, 150000], // annual rent less than £1000
+				1: [
+					[0, 150000], // annual rent more than £1000
+					[150000, 250000]
+				],
+				3: [250000, 500000],
+				4: [500000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together
+			SDLTNew: {
+				0: [0, 150000], // annual rent less than £1000
+				1: [
+					[0, 150000], // annual rent more than £1000
+					[150000, 250000]
+				],
+				3: [250000, 500000],
+				4: [500000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together
+			LBTT: {
+				0: [0, 150000],
+				1: [150000, (0/0)] // upper rate is infinite
+			}
+		}
+	}
+};
+
+},{}],"SDLTCalc":[function(require,module,exports){
 'use strict';
 
 /**
@@ -36,15 +153,17 @@ SDLTCalc.prototype.reset = function() {
 	var self = this;
 
 	self.calculatedTax = {
-		residential: {
-			SDLTOld: 0,
-			SDLTNew: 0,
-			LBTT: 0
-		},
-		commercial: {
-			SDLTOld: 0,
-			SDLTNew: 0,
-			LBTT: 0
+		purchase: {
+			residential: {
+				SDLTOld: 0,
+				SDLTNew: 0,
+				LBTT: 0
+			},
+			commercial: {
+				SDLTOld: 0,
+				SDLTNew: 0,
+				LBTT: 0
+			}
 		}
 	};
 };
@@ -56,33 +175,30 @@ SDLTCalc.prototype.calculate = function(amount) {
 	
 	self.calculateSDLTOld(amount);	
 	self.calculateSDLTNew(amount);
-	self.calculateLBTT(amount);	
-	
-	// todo: change this to something more useful for node purposes?
-	console.log(self.calculatedTax);
+	self.calculateLBTT(amount);
 
-	return self.calculatedTax;
+	return self.calculatedTax.purchase;
 };
 
 SDLTCalc.prototype.calculateSDLTOld = function(amount) {
 	var self = this;
 	
 	// Calculate residential rate
-	for (var rate in SDLTData.residential.SDLTOld) {
-		var threshold = SDLTData.residential.SDLTOld[rate];
+	for (var rate in SDLTData.purchase.residential.SDLTOld) {
+		var threshold = SDLTData.purchase.residential.SDLTOld[rate];
 		
 		if (!isFinite(threshold[1]) || amount <= threshold[1]) {
-			self.calculatedTax.residential.SDLTOld = +((amount * (rate/100)).toFixed(2));
+			self.calculatedTax.purchase.residential.SDLTOld = +((amount * (rate/100)).toFixed(2));
 			break;
 		}
 	}
 	
 	// calculate commercial rate
-	for (var rate in SDLTData.commercial.SDLTOld) {
-		var threshold = SDLTData.commercial.SDLTOld[rate];
+	for (var rate in SDLTData.purchase.commercial.SDLTOld) {
+		var threshold = SDLTData.purchase.commercial.SDLTOld[rate];
 		
 		if (!isFinite(threshold[1]) || amount <= threshold[1]) {
-			self.calculatedTax.commercial.SDLTOld = +((amount * (rate/100)).toFixed(2));
+			self.calculatedTax.purchase.commercial.SDLTOld = +((amount * (rate/100)).toFixed(2));
 			break;
 		}
 	}
@@ -116,75 +232,20 @@ SDLTCalc.prototype.calculateTax = function(amount, taxData) {
 SDLTCalc.prototype.calculateSDLTNew = function(amount) {
 	var self = this;
 	
-	self.calculatedTax.residential.SDLTNew = self.calculateTax(amount, SDLTData.residential.SDLTNew);
-	self.calculatedTax.commercial.SDLTNew = self.calculateTax(amount, SDLTData.commercial.SDLTNew);
+	self.calculatedTax.purchase.residential.SDLTNew = self.calculateTax(amount, SDLTData.purchase.residential.SDLTNew);
+	self.calculatedTax.purchase.commercial.SDLTNew = self.calculateTax(amount, SDLTData.purchase.commercial.SDLTNew);
 };
 
 SDLTCalc.prototype.calculateLBTT = function(amount) {
 	var self = this;
 	
-	self.calculatedTax.residential.LBTT = self.calculateTax(amount, SDLTData.residential.LBTT);
-	self.calculatedTax.commercial.LBTT = self.calculateTax(amount, SDLTData.commercial.LBTT);
+	self.calculatedTax.purchase.residential.LBTT = self.calculateTax(amount, SDLTData.purchase.residential.LBTT);
+	self.calculatedTax.purchase.commercial.LBTT = self.calculateTax(amount, SDLTData.purchase.commercial.LBTT);
 };
 
 module.exports = SDLTCalc;
 
-},{"../json/data.js":1}],1:[function(require,module,exports){
-module.exports = {
-	residential: {
-		// Cliff edge system: use rate for complete amount
-		SDLTOld: {
-			0: [0, 125000],
-			1: [125000, 250000],
-			3: [250000, 500000],
-			4: [500000, 1000000],
-			5: [1000000, 2000000],
-			7: [2000000, (0/0)] // upper rate is infinite
-		},
-
-		// Scaled system: Calculate proportion at appropriate rate and add together
-		SDLTNew: {
-			0: [0, 125000],
-			2: [125000, 250000],
-			5: [250000, 925000],
-			10: [925000, 1500000],
-			12: [1500000, (0/0)] // upper rate is infinite
-		},
-
-		// Scaled system: Calculate proportion at appropriate rate and add together	
-		LBTT: {
-			0: [0, 135000],
-			2: [135000, 250000],
-			10: [250000, 1000000],
-			12: [1000000, (0/0)] // upper rate is infinite
-		}
-	},
-	commercial: {
-		// Cliff edge system: use rate for complete amount
-		SDLTOld: {
-			0: [0, 150000],
-			1: [150000, 250000],
-			3: [250000, 500000],
-			4: [500000, (0/0)] // upper rate is infinite
-		},
-
-		// Scaled system: Calculate proportion at appropriate rate and add together
-		SDLTNew: {
-			0: [0, 150000],
-			3: [150000, 500000],
-			4: [500000, (0/0)] // upper rate is infinite
-		},
-
-		// Scaled system: Calculate proportion at appropriate rate and add together	
-		LBTT: {
-			0: [0, 150000],
-			3: [150000, 350000],
-			4.5: [350000, (0/0)] // upper rate is infinite
-		}
-	}
-};
-
-},{}],"knockout":[function(require,module,exports){
+},{"../json/data.js":1}],"knockout":[function(require,module,exports){
 /*!
  * Knockout JavaScript library v3.2.0
  * (c) Steven Sanderson - http://knockoutjs.com/

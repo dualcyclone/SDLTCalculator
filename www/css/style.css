@@ -1,13 +1,12 @@
 body {
     font-family: arial;
 }
-p, li, a {
+p, li, a, td {
     font-size: 12px;
 }
 li {
     text-align: left;
 }
-
 .newwin {
     padding-right: 10px;
     background: url('../i/newwin.png') no-repeat right center;
@@ -121,16 +120,22 @@ li {
     text-align: right;
     background: #E6E6E6;
 }
+#sdltTaxData .tax th {
+    font-size: 13px;
+}
 #sdltTaxData .tax p {}
-#sdltTaxData .tax.more p:first-of-type {
+#sdltTaxData .tax.more p:first-of-type,
+#sdltTaxData .tax.more td:first-of-type {
     background: #CC0000;
     color: #fff;
 }
-#sdltTaxData .tax.less p:first-of-type {
+#sdltTaxData .tax.less p:first-of-type,
+#sdltTaxData .tax.less td:first-of-type {
     background: #51B451;
     color: #fff;
 }
-#sdltTaxData .tax.same p:first-of-type {
+#sdltTaxData .tax.same p:first-of-type,
+#sdltTaxData .tax.same td:first-of-type {
     background: #D6D633;
 }
 

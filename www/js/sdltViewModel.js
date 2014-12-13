@@ -21,8 +21,8 @@ var ko = require('knockout'),
     activePage = hash.substring(hash.indexOf('#')+1, hash.indexOf('-link'));
 
 /**
-* Knockout VM for web form
-*/
+ * Knockout VM for web form
+ */
 var sdltViewModel = function() {
     var self = this,
         sdltCalc = new SDLTCalc(),
@@ -30,7 +30,7 @@ var sdltViewModel = function() {
 
     self.sdltValue = window.ko.observable(0);
 
-    self.sdltTax = ko.observable(sdltCalc.calculatedTax);
+    self.sdltTax = ko.observable(sdltCalc.calculatedTax.purchase);
 
     self.sdltValue.subscribe(function(newValue) {
         clearTimeout(priceHitTimeout);
@@ -75,7 +75,7 @@ sdltViewModel.prototype.showPage = function(root, evt) {
 
     // Report page view
     ga('send', 'pageview');
-    
+
     // DON'T SCROLL!
     setTimeout(function(){
         window.scroll(0,0);
@@ -113,9 +113,9 @@ sdltEl.sdltAbout.style.display = 'none';
 
 sdltViewModel.prototype.activatePage(activePage === '' ? 'sdltAbout' : activePage);
 
-// JavaScript is working, so display the menu and any other links required
+// JavaScript is working, so display the menu
 document.getElementById('sdltMenu').style.display = '';
 document.getElementById('fomLink').style.display = '';
 
 // Activates knockout.js
-ko.applyBindings(new sdltViewModel());
+window.ko.applyBindings(new sdltViewModel());

@@ -9,4 +9,7 @@
  * any content contained within.
  */
 
-var sdltCalc = require('./lib/SDLTCalc.js');
+var sdltCalc = require('./lib/SDLTCalc.js'),
+    calc = new sdltCalc();
+
+console.log(calc.calculate(process.argv[2]));
