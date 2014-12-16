@@ -11,8 +11,7 @@
     .columns section {
         display: block;
         width: 450px;
-        height: auto;
-        padding-bottom: 30px;
+        min-height: 0;
         margin-bottom: 10px;
     }
     .rates table {
@@ -52,6 +51,71 @@
     }
 }
 
+@media (max-width: 400px) {
+    menu {
+        -webkit-padding-start: 0;
+    }
+
+    #sdlt, #sdltPrivacy {
+        width: 335px;
+        margin: 0;
+    }
+
+    .columns section {
+        display: block;
+        width: 335px;
+        min-height: 0;
+        margin-bottom: 10px;
+    }
+    .rates table {
+        width: 320px;
+        margin: 0 auto;
+    }
+
+    #sdltTaxData {
+        width: 335px;
+        margin: 0;
+    }
+    #sdltTaxData .tax * {
+        width: 97px;
+        text-align: left;
+        margin: 0 0 5px 5px;
+    }
+    #sdltTaxData .tax *:first-child {
+        margin: 0 5px 5px 0;
+    }
+
+    #sdltCalc form {
+        width: 310px;
+    }
+    #sdltCalc form .inputContainer input {
+        width: 275px;
+    }
+
+    #sdltMenu ul li, footer ul li {
+        margin-bottom: 10px;
+    }
+
+    #sdltAbout ul {
+        width: 335px;
+        padding-left: 10px;
+    }
+    #sdltAbout ul li {
+        list-style-position:inside;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    footer {
+        width: 335px;
+        background: #E6E6E6;
+        margin-top: 20px;
+        padding: 5px;
+        border-radius: 4px;
+    }
+}
+
 @media (max-width: 320px) {
     menu {
         -webkit-padding-start: 0;
@@ -65,8 +129,7 @@
     .columns section {
         display: block;
         width: 295px;
-        height: auto;
-        padding-bottom: 30px;
+        min-height: 0;
         margin-bottom: 10px;
     }
     .rates table {

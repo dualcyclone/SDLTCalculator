@@ -15,7 +15,8 @@ var ko = require('knockout'),
     sdltEl = {
         sdltAbout: document.getElementById('sdltAbout'),
         sdltCalcCont: document.getElementById('sdltCalcCont'),
-        sdltRateTables: document.getElementById('sdltRateTables')
+        sdltRatesResidential: document.getElementById('sdltRatesResidential'),
+        sdltRatesCommercial: document.getElementById('sdltRatesCommercial')
     },
     hash = window.location.hash,
     activePage = hash.substring(hash.indexOf('#')+1, hash.indexOf('-link'));
@@ -30,7 +31,7 @@ var sdltViewModel = function() {
 
     self.sdltValue = window.ko.observable(0);
 
-    self.sdltTax = ko.observable(sdltCalc.calculatedTax.purchase);
+    self.sdltTax = ko.observable(sdltCalc.calculatedTax);
 
     self.sdltValue.subscribe(function(newValue) {
         clearTimeout(priceHitTimeout);
@@ -44,12 +45,12 @@ var sdltViewModel = function() {
         return false;
     };
 
-    self.formatValue = function(value, data) {
-        return (value > 0 ? (!data || data.SDLTOld !== value ? "£" + value.toFixed(2) : 'No change') : 'Zero');
+    self.formatValue = function(value, oldValue) {
+        return (value > 0 ? (oldValue !== value ? "£" + value.toFixed(2) : 'No change') : 'Zero');
     };
 
-    self.formatDifference = function(value, data) {
-        var diff = (value - data.SDLTOld);
+    self.formatDifference = function(value, oldValue) {
+        var diff = (value - oldValue);
 
         return value === 0 || diff === 0 ? 'No difference' : ' (' + (diff > 0 ? '+' : '') + diff.toFixed(2) + ')';
     };
@@ -68,7 +69,7 @@ sdltViewModel.prototype.SDLTStyles = {
 
 sdltViewModel.prototype.showPage = function(root, evt) {
     var self = this,
-        anchor = evt.srcElement,
+        anchor = evt.target,
         page = anchor.href.substring(anchor.href.indexOf('#')+1, anchor.href.indexOf('-link'));
 
     self.activatePage(page);
@@ -92,23 +93,10 @@ sdltViewModel.prototype.activatePage = function(page) {
     }
 };
 
-sdltViewModel.prototype.formatValue = function(value, data) {
-    return (value > 0 ? (!data || data.SDLTOld !== value ? "£" + value.toFixed(2) : 'No change') : 'Zero');
-};
-
-sdltViewModel.prototype.formatDifference = function(value, data) {
-    var diff = (value - data.SDLTOld);
-
-    return value === 0 || diff === 0 ? 'No difference' : ' (' + (diff > 0 ? '+' : '') + diff.toFixed(2) + ')';
-};
-
-sdltViewModel.prototype.getSDLTStyle = function(oldVal, newVal) {
-    return self.SDLTStyles[(oldVal === newVal ? (newVal > 0 ? 'same' : 'zero') : (oldVal > newVal ? 'less' : 'more'))];
-};
-
 // default display from homepage
 sdltEl.sdltCalcCont.style.display = 'none';
-sdltEl.sdltRateTables.style.display = 'none';
+sdltEl.sdltRatesResidential.style.display = 'none';
+sdltEl.sdltRatesCommercial.style.display = 'none';
 sdltEl.sdltAbout.style.display = 'none';
 
 sdltViewModel.prototype.activatePage(activePage === '' ? 'sdltAbout' : activePage);

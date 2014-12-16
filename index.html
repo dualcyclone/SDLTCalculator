@@ -32,7 +32,8 @@
         <ul>
             <li><a id="sdltAbout-link" href="#sdltAbout-link" data-bind="click: showPage.bind($root)" class="active">Home</a></li>
             <li><a id="sdltCalcCont-link" href="#sdltCalcCont-link" data-bind="click: showPage.bind($root)">Calculate Stamp Duty</a></li>
-            <li><a id="sdltRateTables-link" href="#sdltRateTables-link" data-bind="click: showPage.bind($root)">View current SDLT / LBTT Rates</a></li>
+            <li><a id="sdltRatesResidential-link" href="#sdltRatesResidential-link" data-bind="click: showPage.bind($root)">View Residential Rates</a></li>
+            <li><a id="sdltRatesCommercial-link" href="#sdltRatesCommercial-link" data-bind="click: showPage.bind($root)">View Commercial Rates</a></li>
         </ul>
     </menu>
 
@@ -42,10 +43,17 @@
     </p>
 
     <!-- Stamp Duty Calc - 600 x 90 -->
+    <!--<ins class="adsbygoogle"-->
+         <!--style="display:inline-block;width:600px;height:90px"-->
+         <!--data-ad-client="ca-pub-8107914591285190"-->
+         <!--data-ad-slot="5887369445"></ins>-->
+
+    <!-- SDLT - Responsive -->
     <ins class="adsbygoogle"
-         style="display:inline-block;width:600px;height:90px"
+         style="display:block"
          data-ad-client="ca-pub-8107914591285190"
-         data-ad-slot="5887369445"></ins>
+         data-ad-slot="9476304246"
+         data-ad-format="auto"></ins>
 
     <section id="sdltAbout">
         <h1>About Stamp Duty in the UK and Scotland</h1>
@@ -78,10 +86,15 @@
             <li><a target="_blank" href="http://www.telegraph.co.uk/finance/newsbysector/constructionandproperty/11146956/Scots-middle-class-to-be-hit-hard-by-new-homeowner-tax.html" target="_blank">http://www.telegraph.co.uk/finance/newsbysector/constructionandproperty/11146956/Scots-middle-class-to-be-hit-hard-by-new-homeowner-tax.html</a><span class="newwin" title="opens in new window"/></li>
         </ul>
     </section>
-    <section id="sdltRateTables">
-        <h1>What are the Stamp Duty rates in the UK and Scotland</h1>
-        <p>The Stamp Duty Land Tax rates within the United Kingdom, and the Scottish Land and Building Transaction Tax rates are as follows:</p>
-        <div class="columns rates">
+    <section id="sdltRatesResidential">
+        <h1>What are the Stamp Duty rates in the UK and Scotland for residential sales</h1>
+        <p>
+            The Stamp Duty Land Tax rates within the United Kingdom, and the Scottish Land and Building Transaction
+            Tax rates for residential sales for both freehold and leasehold properties are as follows:
+        </p>
+
+        <section class="columns rates">
+            <h1>Rates for residential freehold purchases</h1>
             <section>
                 <h1>Old UK SDLT rates</h1>
                 <p>
@@ -196,7 +209,314 @@
                 </table>
                 <p class="source newwin">(<a target="_blank" href="https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands">Source</a>)</p>
             </section>
-        </div>
+        </section>
+
+        <section class="columns rates">
+            <h1>Rates for residential lease purchases</h1>
+            <section>
+                <h1>Old UK SDLT rates</h1>
+                <p>
+                    This is the old cliff-edge system; the price you pay dictates the rate you pay on the complete
+                    purchase price.
+                </p>
+                <p>
+                    This policy is no longer active as of 4th December 2014, but can still be used for purchases where
+                    contracts were exchanged prior to this date.
+                </p>
+                <table>
+                    <tr>
+                        <th>Price paid</th>
+                        <th>Percentage tax</th>
+                    </tr>
+                    <tr>
+                        <td>Under £125,000</td>
+                        <td>Zero</td>
+                    </tr>
+                    <tr>
+                        <td>Over £125,000<br/>Under £250,000</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Over £250,000<br/>Under £500,000</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Over £500,000<br/>Under £1,000,000</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Over £1,000,000<br/>Under £2,000,000</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Over £2,000,000</td>
+                        <td>7</td>
+                    </tr>
+                </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/rates-and-allowances-stamp-duty-land-tax">Source</a>)</p>
+            </section>
+            <section>
+                <h1>New UK SDLT rates</h1>
+                <p>
+                    The new scaled-rate system; The duty is calculated at each band up to the value of the purchase
+                    price.
+                </p>
+                <p>
+                    This policy is active as of 4th December 2014. Where purchases have exchanged contracts prior to this
+                    date, purchasers have the option to choose which SDLT rate they wish to use.
+                </p>
+                <table>
+                    <tr>
+                        <th>Price paid</th>
+                        <th>Percentage tax</th>
+                    </tr>
+                    <tr>
+                        <td>Under £125,000</td>
+                        <td>Zero</td>
+                    </tr>
+                    <tr>
+                        <td>Over £125,000</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/stamp-duty-land-tax-rates">Source</a>)</p>
+            </section>
+            <section>
+                <h1>Scottish LBTT rates</h1>
+                <p>
+                    The new scaled-rate system; The duty is calculated at each band up to the value of the purchase
+                    price.
+                </p>
+                <p>
+                    This policy will become active in Scotland only from the 1st April 2015. Until then, the above
+                    SDLT rates will apply for properties depending on their exchange date.
+                </p>
+                <table>
+                    <tr>
+                        <th>Price paid</th>
+                        <th>Percentage tax</th>
+                    </tr>
+                    <tr>
+                        <td>Under £150,000</td>
+                        <td>Zero</td>
+                    </tr>
+                    <tr>
+                        <td>Over £150,000</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands">Source</a>)</p>
+            </section>
+        </section>
+    </section>
+    <section id="sdltRatesCommercial">
+        <h1>What are the Stamp Duty rates in the UK and Scotland for commercial sales</h1>
+        <p>
+            The Stamp Duty Land Tax rates within the United Kingdom, and the Scottish Land and Building Transaction
+            Tax rates for commercial sales for both freehold and leasehold properties are as follows:
+        </p>
+
+        <section class="columns rates">
+            <h1>Rates for commercial freehold purchases</h1>
+            <section>
+                <h1>Old UK SDLT rates</h1>
+                <p>
+                    This is the old cliff-edge system; the price you pay dictates the rate you pay on the complete
+                    purchase price.
+                </p>
+                <p>
+                    This policy is no longer active as of 4th December 2014, but can still be used for purchases where
+                    contracts were exchanged prior to this date.
+                </p>
+                <table>
+                    <tr>
+                        <th>Price paid</th>
+                        <th>Percentage tax</th>
+                    </tr>
+                    <tr>
+                        <td>Under £150,000</td>
+                        <td>Zero</td>
+                    </tr>
+                    <tr>
+                        <td>Over £150,000<br/>Under £250,000</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Over £250,000<br/>Under £500,000</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Over £500,000</td>
+                        <td>4</td>
+                    </tr>
+                </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/rates-and-allowances-stamp-duty-land-tax">Source</a>)</p>
+            </section>
+            <section>
+                <h1>New UK SDLT rates</h1>
+                <p>
+                    The new scaled-rate system; The duty is calculated at each band up to the value of the purchase
+                    price.
+                </p>
+                <p>
+                    This policy is active as of 4th December 2014. Where purchases have exchanged contracts prior to this
+                    date, purchasers have the option to choose which SDLT rate they wish to use.
+                </p>
+                <table>
+                    <tr>
+                        <th>Price paid</th>
+                        <th>Percentage tax</th>
+                    </tr>
+                    <tr>
+                        <td>Under £150,000</td>
+                        <td>Zero</td>
+                    </tr>
+                    <tr>
+                        <td>Over £150,000<br/>Under £500,000</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Over £500,000</td>
+                        <td>4</td>
+                    </tr>
+                </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/stamp-duty-land-tax-rates">Source</a>)</p>
+            </section>
+            <section>
+                <h1>Scottish LBTT rates</h1>
+                <p>
+                    The new scaled-rate system; The duty is calculated at each band up to the value of the purchase
+                    price.
+                </p>
+                <p>
+                    This policy will become active in Scotland only from the 1st April 2015. Until then, the above
+                    SDLT rates will apply for properties depending on their exchange date.
+                </p>
+                <table>
+                    <tr>
+                        <th>Price paid</th>
+                        <th>Percentage tax</th>
+                    </tr>
+                    <tr>
+                        <td>Under £150,000</td>
+                        <td>Zero</td>
+                    </tr>
+                    <tr>
+                        <td>Over £150,000<br/>Under £350,000</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Over £350,000</td>
+                        <td>4.5</td>
+                    </tr>
+                </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands">Source</a>)</p>
+            </section>
+        </section>
+
+        <section class="columns rates">
+            <h1>Rates for commercial lease purchases</h1>
+            <section>
+                <h1>Old UK SDLT rates</h1>
+                <p>
+                    This is the old cliff-edge system; the price you pay dictates the rate you pay on the complete
+                    purchase price.
+                </p>
+                <p>
+                    This policy is no longer active as of 4th December 2014, but can still be used for purchases where
+                    contracts were exchanged prior to this date.
+                </p>
+                <table>
+                    <tr>
+                        <th>Price paid</th>
+                        <th>Percentage tax</th>
+                    </tr>
+                    <tr>
+                        <td>Under £150,000<br>(Annual rent less than £1000)</td>
+                        <td>Zero</td>
+                    </tr>
+                    <tr>
+                        <td>Under £150,000<br>(Annual rent more than £1000)</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Over £150,000<br/>Under £250,000</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Over £250,000<br/>Under £500,000</td>
+                        <td>3</td>
+                    <tr>
+                        <td>Over £500,000</td>
+                        <td>4</td>
+                    </tr>
+                </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/rates-and-allowances-stamp-duty-land-tax">Source</a>)</p>
+            </section>
+            <section>
+                <h1>New UK SDLT rates</h1>
+                <p>
+                    The new scaled-rate system; The duty is calculated at each band up to the value of the purchase
+                    price.
+                </p>
+                <p>
+                    This policy is active as of 4th December 2014. Where purchases have exchanged contracts prior to this
+                    date, purchasers have the option to choose which SDLT rate they wish to use.
+                </p>
+                <table>
+                    <tr>
+                        <th>Price paid</th>
+                        <th>Percentage tax</th>
+                    </tr>
+                    <tr>
+                        <td>Under £150,000<br>(Annual rent less than £1000)</td>
+                        <td>Zero</td>
+                    </tr>
+                    <tr>
+                        <td>Under £150,000<br>(Annual rent more than £1000)</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Over £150,000<br/>Under £250,000</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Over £250,000<br/>Under £500,000</td>
+                        <td>3</td>
+                    <tr>
+                        <td>Over £500,000</td>
+                        <td>4</td>
+                    </tr>
+                </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.gov.uk/stamp-duty-land-tax-rates">Source</a>)</p>
+            </section>
+            <section>
+                <h1>Scottish LBTT rates</h1>
+                <p>
+                    The new scaled-rate system; The duty is calculated at each band up to the value of the purchase
+                    price.
+                </p>
+                <p>
+                    This policy will become active in Scotland only from the 1st April 2015. Until then, the above
+                    SDLT rates will apply for properties depending on their exchange date.
+                </p>
+                <table>
+                    <tr>
+                        <th>Price paid</th>
+                        <th>Percentage tax</th>
+                    </tr>
+                    <tr>
+                        <td>Under £150,000</td>
+                        <td>Zero</td>
+                    </tr>
+                    <tr>
+                        <td>Over £150,000</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                <p class="source newwin">(<a target="_blank" href="https://www.revenue.scot/land-buildings-transaction-tax/guidance/calculating-tax-rates-and-bands">Source</a>)</p>
+            </section>
+        </section>
     </section>
     <section id="sdltCalcCont">
         <h1>Calculate your Stamp Duty Liability</h1>
@@ -220,52 +540,147 @@
         </section>
 
         <div id="sdltTaxData" data-bind="with: sdltTax">
-            <section data-bind="with: residential">
-                <h1>Residential SLDT rates</h1>
-                <table>
-                    <tbody>
-                    <tr class="tax">
-                        <th>SDLT (Old)</th>
-                        <td data-bind="text: $root.formatValue(SDLTOld)"></td>
-                        <td></td>
-                    </tr>
-                    <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, SDLTNew)">
-                        <th>SDLT (New)</th>
-                        <td data-bind="text: $root.formatValue(SDLTNew, $data)"></td>
-                        <td data-bind="text: $root.formatDifference(SDLTNew, $data)"></td>
-                    </tr>
-                    <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, LBTT)">
-                        <th>LBTT (Scotland)</th>
-                        <td data-bind="text: $root.formatValue(LBTT, $data)"></td>
-                        <td data-bind="text: $root.formatDifference(LBTT, $data)"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </section>
+            <div class="freehold" data-bind="with: freehold">
+                <section data-bind="with: residential">
+                    <h1>Freehold Residential SLDT rates</h1>
+                    <table>
+                        <tbody>
+                        <tr class="tax">
+                            <th>SDLT (Old)</th>
+                            <td data-bind="text: $root.formatValue(SDLTOld)"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, SDLTNew)">
+                            <th>SDLT (New)</th>
+                            <td data-bind="text: $root.formatValue(SDLTNew, SDLTOld)"></td>
+                            <td data-bind="text: $root.formatDifference(SDLTNew, SDLTOld)"></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, LBTT)">
+                            <th>LBTT (Scotland)</th>
+                            <td data-bind="text: $root.formatValue(LBTT, SDLTOld)"></td>
+                            <td data-bind="text: $root.formatDifference(LBTT, SDLTOld)"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
 
-            <section data-bind="with: commercial">
-                <h1>Commercial SLDT rates</h1>
-                <table>
-                    <tbody>
-                    <tr class="tax">
-                        <th>SDLT (Old)</th>
-                        <td data-bind="text: $root.formatValue(SDLTOld)"></td>
-                        <td></td>
-                    </tr>
-                    <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, SDLTNew)">
-                        <th>SDLT (New)</th>
-                        <td data-bind="text: $root.formatValue(SDLTNew, $data)"></td>
-                        <td data-bind="text: $root.formatDifference(SDLTNew, $data)"></td>
-                    </tr>
-                    <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, LBTT)">
-                        <th>LBTT (Scotland)</th>
-                        <td data-bind="text: $root.formatValue(LBTT, $data)"></td>
-                        <td data-bind="text: $root.formatDifference(LBTT, $data)"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </section>
+                <section data-bind="with: commercial">
+                    <h1>Freehold Commercial SLDT rates</h1>
+                    <table>
+                        <tbody>
+                        <tr class="tax">
+                            <th>SDLT (Old)</th>
+                            <td data-bind="text: $root.formatValue(SDLTOld)"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, SDLTNew)">
+                            <th>SDLT (New)</th>
+                            <td data-bind="text: $root.formatValue(SDLTNew, SDLTOld)"></td>
+                            <td data-bind="text: $root.formatDifference(SDLTNew, SDLTOld)"></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, LBTT)">
+                            <th>LBTT (Scotland)</th>
+                            <td data-bind="text: $root.formatValue(LBTT, SDLTOld)"></td>
+                            <td data-bind="text: $root.formatDifference(LBTT, SDLTOld)"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
 
+            <div class="leasehold" data-bind="with: leasehold">
+                <section data-bind="with: residential">
+                    <h1>Leasehold Residential SLDT rates (low rent)</h1>
+                    <table>
+                        <tbody>
+                        <tr class="tax">
+                            <th>SDLT (Old)</th>
+                            <td data-bind="text: $root.formatValue(SDLTOldLow)"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOldLow, SDLTNew)">
+                            <th>SDLT (New)</th>
+                            <td data-bind="text: $root.formatValue(SDLTNew, SDLTOldLow)"></td>
+                            <td data-bind="text: $root.formatDifference(SDLTNew, SDLTOldLow)"></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOldLow, LBTT)">
+                            <th>LBTT (Scotland)</th>
+                            <td data-bind="text: $root.formatValue(LBTT, SDLTOldLow)"></td>
+                            <td data-bind="text: $root.formatDifference(LBTT, SDLTOldLow)"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section data-bind="with: residential">
+                    <h1>Leasehold Residential SLDT rates (high rent)</h1>
+                    <table>
+                        <tbody>
+                        <tr class="tax">
+                            <th>SDLT (Old)</th>
+                            <td data-bind="text: $root.formatValue(SDLTOldHigh)"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOldHigh, SDLTNew)">
+                            <th>SDLT (New)</th>
+                            <td data-bind="text: $root.formatValue(SDLTNew, SDLTOldHigh)"></td>
+                            <td data-bind="text: $root.formatDifference(SDLTNew, SDLTOldHigh)"></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOldHigh, LBTT)">
+                            <th>LBTT (Scotland)</th>
+                            <td data-bind="text: $root.formatValue(LBTT, SDLTOldHigh)"></td>
+                            <td data-bind="text: $root.formatDifference(LBTT, SDLTOldHigh)"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section data-bind="with: commercial">
+                    <h1>Leasehold Commercial SLDT rates (Rent less than £1000 per annum)</h1>
+                    <table>
+                        <tbody>
+                        <tr class="tax">
+                            <th>SDLT (Old)</th>
+                            <td data-bind="text: $root.formatValue(SDLTOldLow)"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOldLow, SDLTNewLow)">
+                            <th>SDLT (New)</th>
+                            <td data-bind="text: $root.formatValue(SDLTNewLow, SDLTOldLow)"></td>
+                            <td data-bind="text: $root.formatDifference(SDLTNewLow, SDLTOldLow)"></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOldLow, LBTT)">
+                            <th>LBTT (Scotland)</th>
+                            <td data-bind="text: $root.formatValue(LBTT, SDLTOldLow)"></td>
+                            <td data-bind="text: $root.formatDifference(LBTT, SDLTOldLow)"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section data-bind="with: commercial">
+                    <h1>Leasehold Commercial SLDT rates (Rent over £1000 per annum)</h1>
+                    <table>
+                        <tbody>
+                        <tr class="tax">
+                            <th>SDLT (Old)</th>
+                            <td data-bind="text: $root.formatValue(SDLTOldHigh)"></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOldHigh, SDLTNewHigh)">
+                            <th>SDLT (New)</th>
+                            <td data-bind="text: $root.formatValue(SDLTNewHigh, SDLTOldHigh)"></td>
+                            <td data-bind="text: $root.formatDifference(SDLTNewHigh, SDLTOldHigh)"></td>
+                        </tr>
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOldHigh, LBTT)">
+                            <th>LBTT (Scotland)</th>
+                            <td data-bind="text: $root.formatValue(LBTT, SDLTOldHigh)"></td>
+                            <td data-bind="text: $root.formatDifference(LBTT, SDLTOldHigh)"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
         </div>
     </section>
 
