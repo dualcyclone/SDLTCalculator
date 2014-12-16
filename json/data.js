@@ -1,5 +1,5 @@
 module.exports = {
-	purchase: {
+	freehold: {
 		residential: {
 			// Cliff edge system: use rate for complete amount
 			SDLTOld: {
@@ -52,7 +52,9 @@ module.exports = {
 			}
 		}
 	},
-	lease: {
+
+	// todo: LEASEHOLD RATES MAY NOT BE ACCURATE!!
+	leasehold: {
 		residential: {
 			// Cliff edge system: use rate for complete amount - low rent
 			SDLTOldLow: {
@@ -83,24 +85,32 @@ module.exports = {
 			}
 		},
 		commercial: {
-			// Cliff edge system: use rate for complete amount
-			SDLTOld: {
-				0: [0, 150000], // annual rent less than £1000
-				1: [
-					[0, 150000], // annual rent more than £1000
-					[150000, 250000]
-				],
+			// Cliff edge system: use rate for complete amount - low rent
+			SDLTOldLow: {
+				0: [0, 150000],
+				1: [150000, 250000],
 				3: [250000, 500000],
 				4: [500000, (0/0)] // upper rate is infinite
 			},
 
-			// Scaled system: Calculate proportion at appropriate rate and add together
-			SDLTNew: {
-				0: [0, 150000], // annual rent less than £1000
-				1: [
-					[0, 150000], // annual rent more than £1000
-					[150000, 250000]
-				],
+			// Cliff edge system: use rate for complete amount - high rent
+			SDLTOldHigh: {
+				1: [0, 250000],
+				3: [250000, 500000],
+				4: [500000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together - low rent
+			SDLTNewLow: {
+				0: [0, 150000],
+				1: [150000, 250000],
+				3: [250000, 500000],
+				4: [500000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together - high rent
+			SDLTNewHigh: {
+				1: [0, 250000],
 				3: [250000, 500000],
 				4: [500000, (0/0)] // upper rate is infinite
 			},

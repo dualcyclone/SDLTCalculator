@@ -1,6 +1,195 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"SDLTCalc":[function(require,module,exports){
+'use strict';
+
+/**
+ * Copyright (c) 2014-2015 Flying Anvil Ltd (copyright@flyinganvil.co.uk)
+ * Any use of the code written here-in belongs to the company mentioned
+ * above and is hereby the owner. If used, one must have strict
+ * approval by the developer of the code written here-in.
+ * The company may at anytime change, modify, add, or delete
+ * any content contained within.
+ */
+
+var SDLTData = require('../json/data.js');
+
+var SDLTCalc = function() {
+	var self = this,
+		_amount;
+
+	Object.defineProperty(self, 'amount', {
+		enumerable: true,
+		get: function() {
+			return _amount;
+		},
+		set: function(value) {
+			_amount = value;
+			
+			self.calculate(_amount);
+		}
+	});
+	
+	// Initialise properties
+	self.reset();
+};
+
+SDLTCalc.prototype.reset = function() {
+	var self = this;
+
+	self.calculatedTax = {
+		freehold: {
+			residential: {
+				SDLTOld: 0,
+				SDLTNew: 0,
+				LBTT: 0
+			},
+			commercial: {
+				SDLTOld: 0,
+				SDLTNew: 0,
+				LBTT: 0
+			}
+		},
+		leasehold: {
+			residential: {
+				SDLTOldLow: 0,
+				SDLTOldHigh: 0,
+				SDLTNew: 0,
+				LBTT: 0
+			},
+			commercial: {
+				SDLTOldLow: 0,
+				SDLTOldHigh: 0,
+				SDLTNewLow: 0,
+				SDLTNewHigh: 0,
+				LBTT: 0
+			}
+		}
+	};
+};
+
+SDLTCalc.prototype.calculate = function(amount) {
+	var self = this;
+	
+	self.reset();
+	
+	self.calculateSDLTOld(amount);	
+	self.calculateSDLTNew(amount);
+	self.calculateLBTT(amount);
+
+	return self.calculatedTax;
+};
+
+SDLTCalc.prototype.calculateSDLTOld = function(amount) {
+	var self = this;
+	
+	// Calculate residential freehold rate
+	for (var rate in SDLTData.freehold.residential.SDLTOld) {
+		var threshold = SDLTData.freehold.residential.SDLTOld[rate];
+
+		if (!isFinite(threshold[1]) || amount <= threshold[1]) {
+			self.calculatedTax.freehold.residential.SDLTOld = +((amount * (rate/100)).toFixed(2));
+			break;
+		}
+	}
+
+	// Calculate residential leasehold rate (low)
+	for (var rate in SDLTData.leasehold.residential.SDLTOldLow) {
+		var threshold = SDLTData.leasehold.residential.SDLTOldLow[rate];
+
+		if (!isFinite(threshold[1]) || amount <= threshold[1]) {
+			self.calculatedTax.leasehold.residential.SDLTOldLow = +((amount * (rate/100)).toFixed(2));
+			break;
+		}
+	}
+
+	// Calculate residential leasehold rate (high)
+	self.calculatedTax.leasehold.residential.SDLTOldHigh = self.calculateTax(amount, SDLTData.leasehold.residential.SDLTOldHigh);
+
+	// calculate commercial freehold rate
+	for (var rate in SDLTData.freehold.commercial.SDLTOld) {
+		var threshold = SDLTData.freehold.commercial.SDLTOld[rate];
+		
+		if (!isFinite(threshold[1]) || amount <= threshold[1]) {
+			self.calculatedTax.freehold.commercial.SDLTOld = +((amount * (rate/100)).toFixed(2));
+			break;
+		}
+	}
+
+	// calculate commercial leasehold rate (low)
+	for (var rate in SDLTData.leasehold.commercial.SDLTOldLow) {
+		var threshold = SDLTData.leasehold.commercial.SDLTOldLow[rate];
+
+		if (!isFinite(threshold[1]) || amount <= threshold[1]) {
+			self.calculatedTax.leasehold.commercial.SDLTOldLow = +((amount * (rate/100)).toFixed(2));
+			break;
+		}
+	}
+
+	// calculate commercial leasehold rate (high)
+	for (var rate in SDLTData.leasehold.commercial.SDLTOldHigh) {
+		var threshold = SDLTData.leasehold.commercial.SDLTOldHigh[rate];
+
+		if (!isFinite(threshold[1]) || amount <= threshold[1]) {
+			self.calculatedTax.leasehold.commercial.SDLTOldHigh = +((amount * (rate/100)).toFixed(2));
+			break;
+		}
+	}
+};
+
+SDLTCalc.prototype.calculateTax = function(amount, taxData) {
+	var tmpAmount = 0,
+		tmpTax = 0;
+
+	for (var rate in taxData) {
+		var threshold = taxData[rate];
+		
+		if (amount > threshold[0]) {
+			tmpAmount = amount - threshold[0];
+			if (amount > threshold[1]) {
+				tmpTax += +((threshold[1] - threshold[0]) * (rate/100));
+			} else {
+				tmpTax += tmpAmount * (rate/100);
+			}
+		} 
+		
+		// stop looping through rates if the amount specified has no further calculations required
+		if (amount <= threshold[1]) {
+			break;
+		}
+	}
+	
+	return +(tmpTax.toFixed(2));
+};
+
+SDLTCalc.prototype.calculateSDLTNew = function(amount) {
+	var self = this;
+
+	// freehold
+	self.calculatedTax.freehold.residential.SDLTNew = self.calculateTax(amount, SDLTData.freehold.residential.SDLTNew);
+	self.calculatedTax.freehold.commercial.SDLTNew = self.calculateTax(amount, SDLTData.freehold.commercial.SDLTNew);
+
+	// leasehold
+	self.calculatedTax.leasehold.residential.SDLTNew = self.calculateTax(amount, SDLTData.leasehold.residential.SDLTNew);
+	self.calculatedTax.leasehold.commercial.SDLTNewLow = self.calculateTax(amount, SDLTData.leasehold.commercial.SDLTNewLow);
+	self.calculatedTax.leasehold.commercial.SDLTNewHigh = self.calculateTax(amount, SDLTData.leasehold.commercial.SDLTNewHigh);
+};
+
+SDLTCalc.prototype.calculateLBTT = function(amount) {
+	var self = this;
+
+	// freehold
+	self.calculatedTax.freehold.residential.LBTT = self.calculateTax(amount, SDLTData.freehold.residential.LBTT);
+	self.calculatedTax.freehold.commercial.LBTT = self.calculateTax(amount, SDLTData.freehold.commercial.LBTT);
+
+	// leasehold
+	self.calculatedTax.leasehold.residential.LBTT = self.calculateTax(amount, SDLTData.leasehold.residential.LBTT);
+	self.calculatedTax.leasehold.commercial.LBTT = self.calculateTax(amount, SDLTData.leasehold.commercial.LBTT);
+};
+
+module.exports = SDLTCalc;
+
+},{"../json/data.js":1}],1:[function(require,module,exports){
 module.exports = {
-	purchase: {
+	freehold: {
 		residential: {
 			// Cliff edge system: use rate for complete amount
 			SDLTOld: {
@@ -53,7 +242,9 @@ module.exports = {
 			}
 		}
 	},
-	lease: {
+
+	// todo: LEASEHOLD RATES MAY NOT BE ACCURATE!!
+	leasehold: {
 		residential: {
 			// Cliff edge system: use rate for complete amount - low rent
 			SDLTOldLow: {
@@ -84,24 +275,32 @@ module.exports = {
 			}
 		},
 		commercial: {
-			// Cliff edge system: use rate for complete amount
-			SDLTOld: {
-				0: [0, 150000], // annual rent less than £1000
-				1: [
-					[0, 150000], // annual rent more than £1000
-					[150000, 250000]
-				],
+			// Cliff edge system: use rate for complete amount - low rent
+			SDLTOldLow: {
+				0: [0, 150000],
+				1: [150000, 250000],
 				3: [250000, 500000],
 				4: [500000, (0/0)] // upper rate is infinite
 			},
 
-			// Scaled system: Calculate proportion at appropriate rate and add together
-			SDLTNew: {
-				0: [0, 150000], // annual rent less than £1000
-				1: [
-					[0, 150000], // annual rent more than £1000
-					[150000, 250000]
-				],
+			// Cliff edge system: use rate for complete amount - high rent
+			SDLTOldHigh: {
+				1: [0, 250000],
+				3: [250000, 500000],
+				4: [500000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together - low rent
+			SDLTNewLow: {
+				0: [0, 150000],
+				1: [150000, 250000],
+				3: [250000, 500000],
+				4: [500000, (0/0)] // upper rate is infinite
+			},
+
+			// Scaled system: Calculate proportion at appropriate rate and add together - high rent
+			SDLTNewHigh: {
+				1: [0, 250000],
 				3: [250000, 500000],
 				4: [500000, (0/0)] // upper rate is infinite
 			},
@@ -115,137 +314,7 @@ module.exports = {
 	}
 };
 
-},{}],"SDLTCalc":[function(require,module,exports){
-'use strict';
-
-/**
- * Copyright (c) 2014-2015 Flying Anvil Ltd (copyright@flyinganvil.co.uk)
- * Any use of the code written here-in belongs to the company mentioned
- * above and is hereby the owner. If used, one must have strict
- * approval by the developer of the code written here-in.
- * The company may at anytime change, modify, add, or delete
- * any content contained within.
- */
-
-var SDLTData = require('../json/data.js');
-
-var SDLTCalc = function() {
-	var self = this,
-		_amount;
-
-	Object.defineProperty(self, 'amount', {
-		enumerable: true,
-		get: function() {
-			return _amount;
-		},
-		set: function(value) {
-			_amount = value;
-			
-			self.calculate(_amount);
-		}
-	});
-	
-	// Initialise properties
-	self.reset();
-};
-
-SDLTCalc.prototype.reset = function() {
-	var self = this;
-
-	self.calculatedTax = {
-		purchase: {
-			residential: {
-				SDLTOld: 0,
-				SDLTNew: 0,
-				LBTT: 0
-			},
-			commercial: {
-				SDLTOld: 0,
-				SDLTNew: 0,
-				LBTT: 0
-			}
-		}
-	};
-};
-
-SDLTCalc.prototype.calculate = function(amount) {
-	var self = this;
-	
-	self.reset();
-	
-	self.calculateSDLTOld(amount);	
-	self.calculateSDLTNew(amount);
-	self.calculateLBTT(amount);
-
-	return self.calculatedTax.purchase;
-};
-
-SDLTCalc.prototype.calculateSDLTOld = function(amount) {
-	var self = this;
-	
-	// Calculate residential rate
-	for (var rate in SDLTData.purchase.residential.SDLTOld) {
-		var threshold = SDLTData.purchase.residential.SDLTOld[rate];
-		
-		if (!isFinite(threshold[1]) || amount <= threshold[1]) {
-			self.calculatedTax.purchase.residential.SDLTOld = +((amount * (rate/100)).toFixed(2));
-			break;
-		}
-	}
-	
-	// calculate commercial rate
-	for (var rate in SDLTData.purchase.commercial.SDLTOld) {
-		var threshold = SDLTData.purchase.commercial.SDLTOld[rate];
-		
-		if (!isFinite(threshold[1]) || amount <= threshold[1]) {
-			self.calculatedTax.purchase.commercial.SDLTOld = +((amount * (rate/100)).toFixed(2));
-			break;
-		}
-	}
-};
-
-SDLTCalc.prototype.calculateTax = function(amount, taxData) {
-	var tmpAmount = 0,
-		tmpTax = 0;
-
-	for (var rate in taxData) {
-		var threshold = taxData[rate];
-		
-		if (amount > threshold[0]) {
-			tmpAmount = amount - threshold[0];
-			if (amount > threshold[1]) {
-				tmpTax += +((threshold[1] - threshold[0]) * (rate/100));
-			} else {
-				tmpTax += tmpAmount * (rate/100);
-			}
-		} 
-		
-		// stop looping through rates if the amount specified has no further calculations required
-		if (amount <= threshold[1]) {
-			break;
-		}
-	}
-	
-	return +(tmpTax.toFixed(2));
-};
-
-SDLTCalc.prototype.calculateSDLTNew = function(amount) {
-	var self = this;
-	
-	self.calculatedTax.purchase.residential.SDLTNew = self.calculateTax(amount, SDLTData.purchase.residential.SDLTNew);
-	self.calculatedTax.purchase.commercial.SDLTNew = self.calculateTax(amount, SDLTData.purchase.commercial.SDLTNew);
-};
-
-SDLTCalc.prototype.calculateLBTT = function(amount) {
-	var self = this;
-	
-	self.calculatedTax.purchase.residential.LBTT = self.calculateTax(amount, SDLTData.purchase.residential.LBTT);
-	self.calculatedTax.purchase.commercial.LBTT = self.calculateTax(amount, SDLTData.purchase.commercial.LBTT);
-};
-
-module.exports = SDLTCalc;
-
-},{"../json/data.js":1}],"knockout":[function(require,module,exports){
+},{}],"knockout":[function(require,module,exports){
 /*!
  * Knockout JavaScript library v3.2.0
  * (c) Steven Sanderson - http://knockoutjs.com/
