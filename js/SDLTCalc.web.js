@@ -43,8 +43,7 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
                     LBTT: 0
                 },
                 commercial: {
-                    SDLTOld: 0,
-                    SDLTNew: 0,
+                    SDLT: 0,
                     LBTT: 0
                 }
             },
@@ -105,11 +104,11 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
         self.calculatedTax.leasehold.residential.SDLTOldHigh = self.calculateTax(amount, SDLTData.leasehold.residential.SDLTOldHigh);
 
         // calculate commercial freehold rate
-        for (var rate in SDLTData.freehold.commercial.SDLTOld) {
-            var threshold = SDLTData.freehold.commercial.SDLTOld[rate];
+        for (var rate in SDLTData.freehold.commercial.SDLT) {
+            var threshold = SDLTData.freehold.commercial.SDLT[rate];
 
             if (!isFinite(threshold[1]) || amount <= threshold[1]) {
-                self.calculatedTax.freehold.commercial.SDLTOld = +((amount * (rate/100)).toFixed(2));
+                self.calculatedTax.freehold.commercial.SDLT = +((amount * (rate/100)).toFixed(2));
                 break;
             }
         }
@@ -165,7 +164,6 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
 
         // freehold
         self.calculatedTax.freehold.residential.SDLTNew = self.calculateTax(amount, SDLTData.freehold.residential.SDLTNew);
-        self.calculatedTax.freehold.commercial.SDLTNew = self.calculateTax(amount, SDLTData.freehold.commercial.SDLTNew);
 
         // leasehold
         self.calculatedTax.leasehold.residential.SDLTNew = self.calculateTax(amount, SDLTData.leasehold.residential.SDLTNew);
@@ -221,17 +219,10 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
             },
             commercial: {
                 // Cliff edge system: use rate for complete amount
-                SDLTOld: {
+                SDLT: {
                     0: [0, 150000],
                     1: [150000, 250000],
                     3: [250000, 500000],
-                    4: [500000, (0/0)] // upper rate is infinite
-                },
-
-                // Scaled system: Calculate proportion at appropriate rate and add together
-                SDLTNew: {
-                    0: [0, 150000],
-                    3: [150000, 500000],
                     4: [500000, (0/0)] // upper rate is infinite
                 },
 

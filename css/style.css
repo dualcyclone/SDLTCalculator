@@ -92,6 +92,8 @@ menu {
     position: relative;
     width: 350px;
     margin: 0 auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000
 }
 #sdltCalc form .inputContainer {
     font-size: 18px;
@@ -103,12 +105,24 @@ menu {
     font-size: 18px;
     width: 308px;
 }
+#sdltCalc form .inputContainer input.error {
+    border: 1px solid #CC0000;
+    background: #FCC;
+}
+#sdltCalc form .inputContainer p.error {
+    color: #CC0000;
+    font-weight: bold;
+}
+
 #sdltCalc form .inputContainer .currencySymbol {
     position: absolute;
     top: 11px;
     left: 10px;
 }
-
+#sdltCalc form .filterContainer p {
+    font-size: 14px;
+    font-weight: bold;
+}
 
 #sdltTaxData {
     width: 408px;

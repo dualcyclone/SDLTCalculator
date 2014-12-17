@@ -27,9 +27,17 @@ var ko = require('knockout'),
 var sdltViewModel = function() {
     var self = this,
         sdltCalc = new SDLTCalc(),
-        priceHitTimeout = 0;
+        priceHitTimeout = 0,
+        valueRegEx = /[A-Za-z|?%$£\"\'@;:#~\[\{\]\}!^\&*\(\)\-_\=\+]/;
 
-    self.sdltValue = window.ko.observable(0);
+    self.sdltValue = ko.observable(0);
+    self.sdltValueAsCurrency = ko.computed(function() {
+        return self.sdltValue().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    });
+    self.sale = ko.observable('all'); // 'fre' / 'com' / 'all'
+    self.type = ko.observable('all'); // 'res' / 'lse' / 'all'
+
+    self.error = ko.observable(false);
 
     self.sdltTax = ko.observable(sdltCalc.calculatedTax);
 
@@ -38,7 +46,16 @@ var sdltViewModel = function() {
         priceHitTimeout = setTimeout(function() {
             ga('set', 'metric1', newValue);
         }, 1000);
-        self.sdltTax(sdltCalc.calculate(newValue));
+
+        sdltCalc.reset();
+        self.sdltTax(sdltCalc.calculatedTax);
+        self.error(valueRegEx.test(newValue));
+
+        if (!self.error()) {
+            newValue = newValue.replace(/[^\d.]/g, '');
+
+            self.sdltTax(sdltCalc.calculate(newValue));
+        }
     });
 
     self.handleSubmit = function() {
@@ -57,6 +74,14 @@ var sdltViewModel = function() {
 
     self.getSDLTStyle = function(oldVal, newVal) {
         return self.SDLTStyles[(oldVal === newVal ? (newVal > 0 ? 'same' : 'zero') : (oldVal > newVal ? 'less' : 'more'))];
+    };
+
+    self.isSale = function(sale) {
+        return self.sale() === 'all' || self.sale() === sale;
+    };
+
+    self.isType = function(type) {
+        return self.type() === 'all' || self.type() === type;
     };
 };
 
@@ -106,4 +131,4 @@ document.getElementById('sdltMenu').style.display = '';
 document.getElementById('fomLink').style.display = '';
 
 // Activates knockout.js
-window.ko.applyBindings(new sdltViewModel());
+ko.applyBindings(new sdltViewModel());

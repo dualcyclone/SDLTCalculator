@@ -547,14 +547,37 @@
             <form data-bind="submit: handleSubmit">
                 <div class="inputContainer">
                     <span class="currencySymbol">£</span>
-                    <input id="purchasePrice" type="text" maxlength="10" pattern="([0-9]*)" data-bind="value: sdltValue, valueUpdate:'afterkeydown'">
+                    <input id="purchasePrice" type="text" maxlength="10" pattern="([0-9]*)" data-bind="value: sdltValue, valueUpdate:'afterkeydown', css: { error: error }">
+                    <p class="error" data-bind="style: { display: error() ? 'block' : 'none' }">You have entered an invalid amount, please try again.</p>
+                </div>
+                <div class="filterContainer">
+                    <p>Filter by:</p>
+                    <label for="radioTypeAll">All types</label><input id="radioTypeAll" type="radio" name="type" value="all" data-bind="checked: type">
+                    <label for="radioRes">Residential</label><input id="radioRes" type="radio" name="type" value="res" data-bind="checked: type">
+                    <label for="radioCom">Commercial</label><input id="radioCom" type="radio" name="type" value="com" data-bind="checked: type">
+                    <br/>
+                    <label for="radioSaleAll">All tenures</label><input id="radioSaleAll" type="radio" name="sale" value="all" data-bind="checked: sale">
+                    <label for="radioFrh">Freehold</label><input id="radioFrh" type="radio" name="sale" value="fre" data-bind="checked: sale">
+                    <label for="radioLse">Leasehold</label><input id="radioLse" type="radio" name="sale" value="lse" data-bind="checked: sale">
                 </div>
             </form>
         </section>
 
+        <p data-bind="style: { display: sdltValue() > 0 ? 'block' : 'none'}">
+            You have selected to see the tax calculation for
+            <span data-bind="style: { display: sale() === 'fre' ? 'inline' : 'none' }">freehold</span>
+            <span data-bind="style: { display: sale() === 'lse' ? 'inline' : 'none' }">leasehold</span>
+            <span data-bind="style: { display: sale() === 'all' ? 'inline' : 'none' }">all</span>
+            sale types for
+            <span data-bind="style: { display: type() === 'res' ? 'inline' : 'none' }">residential</span>
+            <span data-bind="style: { display: type() === 'com' ? 'inline' : 'none' }">commercial</span>
+            <span data-bind="style: { display: type() === 'all' ? 'inline' : 'none' }">all</span>
+            properties, for a purchase price of £<span data-bind="text: sdltValueAsCurrency"></span>
+        </p>
+
         <div id="sdltTaxData" data-bind="with: sdltTax">
-            <div class="freehold" data-bind="with: freehold">
-                <section data-bind="with: residential">
+            <div class="freehold" data-bind="with: freehold, style: { display: $root.isSale('fre') ? 'block' : 'none' }">
+                <section data-bind="with: residential, style: { display: $root.isType('res') ? 'block' : 'none' }">
                     <h1>Freehold Residential SLDT rates</h1>
                     <table>
                         <tbody>
@@ -577,32 +600,27 @@
                     </table>
                 </section>
 
-                <section data-bind="with: commercial">
+                <section data-bind="with: commercial, style: { display: $root.isType('com') ? 'block' : 'none' }">
                     <h1>Freehold Commercial SLDT rates</h1>
                     <table>
                         <tbody>
                         <tr class="tax">
-                            <th>SDLT (Old)</th>
-                            <td data-bind="text: $root.formatValue(SDLTOld)"></td>
+                            <th>SDLT</th>
+                            <td data-bind="text: $root.formatValue(SDLT)"></td>
                             <td></td>
                         </tr>
-                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, SDLTNew)">
-                            <th>SDLT (New)</th>
-                            <td data-bind="text: $root.formatValue(SDLTNew, SDLTOld)"></td>
-                            <td data-bind="text: $root.formatDifference(SDLTNew, SDLTOld)"></td>
-                        </tr>
-                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLTOld, LBTT)">
+                        <tr class="tax" data-bind="css: $root.getSDLTStyle(SDLT, LBTT)">
                             <th>LBTT (Scotland)</th>
-                            <td data-bind="text: $root.formatValue(LBTT, SDLTOld)"></td>
-                            <td data-bind="text: $root.formatDifference(LBTT, SDLTOld)"></td>
+                            <td data-bind="text: $root.formatValue(LBTT, SDLT)"></td>
+                            <td data-bind="text: $root.formatDifference(LBTT, SDLT)"></td>
                         </tr>
                         </tbody>
                     </table>
                 </section>
             </div>
 
-            <div class="leasehold" data-bind="with: leasehold">
-                <section data-bind="with: residential">
+            <div class="leasehold" data-bind="with: leasehold, style: { display: $root.isSale('lse') ? 'block' : 'none' }">
+                <section data-bind="with: residential, style: { display: $root.isType('res') ? 'block' : 'none' }">
                     <h1>Leasehold Residential SLDT rates (low rent)</h1>
                     <table>
                         <tbody>
@@ -625,7 +643,7 @@
                     </table>
                 </section>
 
-                <section data-bind="with: residential">
+                <section data-bind="with: residential, style: { display: $root.isType('res') ? 'block' : 'none' }">
                     <h1>Leasehold Residential SLDT rates (high rent)</h1>
                     <table>
                         <tbody>
@@ -648,7 +666,7 @@
                     </table>
                 </section>
 
-                <section data-bind="with: commercial">
+                <section data-bind="with: commercial, style: { display: $root.isType('com') ? 'block' : 'none' }">
                     <h1>Leasehold Commercial SLDT rates (Rent less than £1000 per annum)</h1>
                     <table>
                         <tbody>
@@ -671,7 +689,7 @@
                     </table>
                 </section>
 
-                <section data-bind="with: commercial">
+                <section data-bind="with: commercial, style: { display: $root.isType('com') ? 'block' : 'none' }">
                     <h1>Leasehold Commercial SLDT rates (Rent over £1000 per annum)</h1>
                     <table>
                         <tbody>
