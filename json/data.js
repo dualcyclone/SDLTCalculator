@@ -30,17 +30,10 @@ module.exports = {
 		},
 		commercial: {
 			// Cliff edge system: use rate for complete amount
-			SDLTOld: {
+			SDLT: {
 				0: [0, 150000],
 				1: [150000, 250000],
 				3: [250000, 500000],
-				4: [500000, (0/0)] // upper rate is infinite
-			},
-
-			// Scaled system: Calculate proportion at appropriate rate and add together
-			SDLTNew: {
-				0: [0, 150000],
-				3: [150000, 500000],
 				4: [500000, (0/0)] // upper rate is infinite
 			},
 
