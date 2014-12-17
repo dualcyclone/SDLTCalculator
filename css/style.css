@@ -16,6 +16,16 @@ menu {
     padding-left: 0;
 }
 
+#social ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#social ul li {
+    display: inline-block;
+    vertical-align: top;
+}
+
 .columns section {
     display: inline-block;
     width: 187px;
